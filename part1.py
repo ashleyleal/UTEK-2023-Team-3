@@ -22,19 +22,11 @@ def print_and_count_unique_strings(input_string):
   for string in unique_strings:
     print(string, end='|')
 
-  #print(unique_strings, 'asdfasdgagdda')
   print()
-  print('-'* (totallen+count+1+num+1))
-  #print(totallen, num)
+  print('-'* (totallen + count + 1 + num + 1))
 
   # Return the count of unique strings
   return num, len(unique_strings), unique_strings
-
-# Example usage:
-#input_str = "a->b, g->s, d->h"
-#numgg, result, afdstring = print_and_count_unique_strings(input_str)
-#print("\nTotal unique strings:", result)
-
 
 def parse_input(input_string):
 
@@ -48,23 +40,16 @@ def parse_input(input_string):
           row.append(0)
       matrix.append(row)
 
-  # Print the matrixr (zeroes bc nothing changed yet)
-  # Split the input string into individual relationships
   relationships = input_string.strip().split(', ')
-  #print(input_string)
-  #print(relationships)
 
-  # Initialize variables to relationships # Stores all relationships as pairs in 1D array; Example: [('a', 'b'), ('b', 'c')]
-
-  # Process each relationship
   first_index = -1
   second_index = -2
 
+  # Process each relationship
   for relationship in relationships:
-    start, end = relationship.split('->') # Makes sure there are two in a relationship
+    start, end = relationship.split('->') p
 
     for j, node in enumerate(nodeList):
-        #print(j, node)
         if(node==start):
           first_index = j
         if(node==end):
@@ -82,8 +67,6 @@ def parse_input(input_string):
       print(' '*(length),end = '|' )
     print()
 
-
-
   return result
 
 
@@ -92,6 +75,3 @@ input_string = input("Enter the relationships separated by commas: ")
 
 # Get the result
 output = parse_input(input_string)
-
-# Print the result
-#print(output)
