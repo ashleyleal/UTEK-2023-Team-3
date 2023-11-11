@@ -19,12 +19,14 @@ def parse_input(input, nodes, end):
   for relationship_str in relationship_strings:
     # Split each relationship string based on '->' to extract source and rest
     source, rest = relationship_str.split('->')
-    
+
     # Further split the rest based on '($' to extract target and value_str
     target, value_str = rest.split(' ($', 1)
 
     # Extract the numerical value and remove the closing parenthesis
-    value = int(value_str.rstrip(') '))
+    #print(target, value_str)
+    value = int(value_str.rstrip(')'))
+    #print(value)
 
     # Append the tuple to the relationships list
     relationships.append((source, target, value))
