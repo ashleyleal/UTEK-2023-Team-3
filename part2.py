@@ -2,13 +2,14 @@ class Graph:
 
   def __init__(self):
     self.graph = {}
-
+  
+  #keeping track of the traits of each path
   def add_edge(self, start, end, cost):
     if start not in self.graph:
       self.graph[start] = {}
     self.graph[start][end] = cost
 
-
+#separating the pieces of the input so they can be interpreted individually
 def parse_input(input, nodes, end):
   # Split the input string based on '->' and ',' to extract individual strings
   relationships = []
@@ -31,22 +32,21 @@ def parse_input(input, nodes, end):
     # Append the tuple to the relationships list
     relationships.append((source, target, value))
 
-    for sou, tar, val in relationships:
-      if sou not in nodes and sou not in end:
-        nodes.append(sou)
-      if tar not in nodes and tar not in end:
-        nodes.append(tar)
+    for source_temp, target_temp, value_temp in relationships:
+      if source_temp not in nodes and source_temp not in end:
+        nodes.append(source_temp)
+      if target_temp not in nodes and target_temp not in end:
+        nodes.append(target_temp)
 
   return relationships, nodes
 
-
+#determining the lowest possible cost
 def find_min_cost_path(graph, nodes):
-  cha = nodes[0]
-  lengthads = len(nodes)-1
-  endcha = nodes[lengthads]
+  num_nodes = len(nodes)-1
   min_cost = float('inf')  #initial set up cost
   min_path = None  #initial set up path
 
+  #finding the costs of each valid path
   def search_paths(arr, start, end):
       nonlocal min_cost, min_path
 
@@ -60,7 +60,7 @@ def find_min_cost_path(graph, nodes):
                   cost = float('inf')
                   break
 
-          if (cost < min_cost) and arr[0]==cha and arr[lengthads]==endcha:
+          if (cost < min_cost) and arr[0]==nodes[0] and arr[num_nodes]==nodes[num_nodes]:
               min_cost = cost
               min_path = arr
 
