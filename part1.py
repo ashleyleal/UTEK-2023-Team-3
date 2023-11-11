@@ -1,3 +1,9 @@
+""" 
+UTEK 2024
+Part 1: Graph Construction
+By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
+"""
+
 def print_and_count_unique_strings(input_string):
   # Split the input string based on '->' and ',' to extract individual strings
   strings = [s.strip() for s in input_string.split('->')]
@@ -18,7 +24,6 @@ def print_and_count_unique_strings(input_string):
           totallen = totallen + len(string)
           unique_strings.append(string)
 
-  # Print borders of table
   print(" " * (num + 1), end='|')
   for string in unique_strings:
     print(string, end='|')
@@ -48,17 +53,14 @@ def parse_input(input_string):
 
   # Process each relationship
   for relationship in relationships:
-    start, end = relationship.split('->') 
+    start, end = relationship.split('->') p
 
-    # Set adjacent nodes intersections to 1
     for j, node in enumerate(nodeList):
         if(node==start):
           first_index = j
         if(node==end):
           second_index = j
     matrix[first_index][second_index] = 1
-  
-  # Print each element of the matric
   for row in range(len(matrix)):
     print(nodeList[row], end='')
     print(' '*(number-(len(nodeList[row]))), end = ' |')
