@@ -63,7 +63,6 @@ def find_min_cost_path(graph, nodes):
           if (cost < min_cost) and arr[0]==cha and arr[lengthads]==endcha:
               min_cost = cost
               min_path = arr
-              #print(min_cost, min_path)
 
       else:
           for i in range(start, end + 1):
@@ -71,18 +70,14 @@ def find_min_cost_path(graph, nodes):
               search_paths(arr, start + 1, end)
               arr[start], arr[i] = arr[i], arr[start]  # Backtrack here
 
-  # Rest of the code remains unchanged
-
-
   search_paths(nodes, 0, len(nodes) - 1)
 
   return min_path, min_cost
 
 
-# Example usage:
 my_graph = Graph()
 
-#input
+# User Prompts
 start_inter = input("Starting intersection: ")
 end_inter = input("Ending intersection: ")
 # Take user input
@@ -94,12 +89,9 @@ nodes = []
 nodes.insert(0, start_inter)
 output, nodes = parse_input(input_string, nodes, end_inter)
 nodes.append(end_inter)
-#return [('a', 'b', 2), ('b', 'c', 4)]
 
 for i, j, k in output:
   my_graph.add_edge(i, j, k)
-
-#print(my_graph.graph)
 
 min_path, min_path_cost = find_min_cost_path(my_graph.graph, nodes)
 
