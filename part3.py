@@ -1,41 +1,43 @@
 class Graph:
+# make a class to store the input 
 
   def __init__(self):
     self.graph = {}
 
   def add_edge(self, start, end, cost, time):
+    # keep in track of the four input and make them into dictionary
     if start not in self.graph:
       self.graph[start] = {}
     self.graph[start][end] = (cost, time)
 
-
+# make the input into tuple with shape  [('a', 'b', 2, 4), ('b', 'c', 4, 6),......]
 def parse_input(input_str, nodes, end):
   relationships = []
 
   # Split the input string based on ', ' to separate individual relationships
   relationship_strings = input_str.split('), ')
-  #print(relationship_strings)
+  # print(relationship_strings)
 
   for relationship_str in relationship_strings:
     # Split each relationship string based on '->' to extract source and rest
     source, rest = relationship_str.split('->')
-    ################print(source)
-    #print(rest)
+    # print(source)
+    # print(rest)
 
     # Further split the rest based on ' ($' to extract target and value_str
     target, value_str = rest.split(' ($', 1)
-    ##########print(target)
-    #print(value_str)
+    # print(target)
+    # print(value_str)
     value, time_str = value_str.split(', ', 1)
-    #print(value)
-    #print(time_str)
+    # print(value)
+    # print(time_str)
     time, blank = time_str.split(' min cooldown', 1)
     # Extract the numerical value and remove the closing parenthesis
-    #print(time,'adsfa')
+    # print(time,'adsfa')
     value = int(value)
     time = int(time)
-    #print(source, target, value, time)
-    #return [('a', 'b', 2, 4), ('b', 'c', 4, 6)]
+    # print(source, target, value, time)
+    # return [('a', 'b', 2, 4), ('b', 'c', 4, 6)]
 
     # Check if there is a second part (cooldown)
 
@@ -49,10 +51,11 @@ def parse_input(input_str, nodes, end):
         nodes.append(tar)
 
   return relationships, nodes
-  #"a->b ($4, 1 min cooldown), b->c ($5, 1 min cooldown), c->d ($3, 3 min cooldown), b->d ($7, 3 min cooldown), a->c ($4, 3 min cooldown), d->a ($1, 4 min cooldown)"
+  # example input: "a->b ($4, 1 min cooldown), b->c ($5, 1 min cooldown), c->d ($3, 3 min cooldown), b->d ($7, 3 min cooldown), a->c ($4, 3 min cooldown), d->a ($1, 4 min cooldown)"
 
 
 def find_min_cost_path(graph, nodes, max_time):
+  # recursion to find the minimum path
   num_nodes = len(nodes) - 1
   min_cost = float('inf')  #initial set up cost
   min_path = None  #initial set up path
@@ -82,6 +85,7 @@ def find_min_cost_path(graph, nodes, max_time):
 
       if (cost < min_cost
           ) and arr[0] == nodes[0] and arr[num_nodes] == nodes[num_nodes]:
+            #update the minimum cost and time
         min_cost = cost
         min_path = arr
         total_time = timer
@@ -98,10 +102,10 @@ def find_min_cost_path(graph, nodes, max_time):
   return min_path, min_cost, total_time
 
 
-# Example usage:
+# Usage of class:
 my_graph = Graph()
 
-#input
+# input
 start_inter = input("Starting intersection: ")
 end_inter = input("Ending intersection: ")
 maxTime = int(input("maxTime = "))
@@ -119,11 +123,10 @@ nodes.append(end_inter)
 for i, j, k, f in output:
   my_graph.add_edge(i, j, k, f)
 
-#print(my_graph.graph)
-
 min_path, min_path_cost, total_time = find_min_cost_path(
     my_graph.graph, nodes, maxTime)
 
+#print out the final result
 if min_path_cost == float('inf'):  # when no valid path due to time
   print("Best path:[]")
   print("Cost: -1")
@@ -137,5 +140,4 @@ else:
       print(path, end="->")
   print(f"totalCost: ${min_path_cost}")
   print(f"totalTime: {total_time}min")
-  #with cost {min_path_cost}
 
