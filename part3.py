@@ -1,3 +1,9 @@
+""" 
+UTEK 2024
+Part 3: Time Constraint
+By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
+"""
+
 class Graph:
 # make a class to store the input 
 
@@ -140,4 +146,3 @@ else:
       print(path, end="->")
   print(f"totalCost: ${min_path_cost}")
   print(f"totalTime: {total_time}min")
-
