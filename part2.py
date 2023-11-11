@@ -21,7 +21,7 @@ def parse_input(input, nodes, end):
     source, rest = relationship_str.split('->')
     
     # Further split the rest based on '($' to extract target and value_str
-    target, value_str = rest.split('($', 1)
+    target, value_str = rest.split(' ($', 1)
 
     # Extract the numerical value and remove the closing parenthesis
     value = int(value_str.rstrip(') '))
