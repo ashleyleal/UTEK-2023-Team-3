@@ -53,7 +53,7 @@ def parse_input(input_string):
 
   # Process each relationship
   for relationship in relationships:
-    start, end = relationship.split('->') p
+    start, end = relationship.split('->') 
 
     for j, node in enumerate(nodeList):
         if(node==start):
