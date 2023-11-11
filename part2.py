@@ -1,3 +1,9 @@
+""" 
+UTEK 2024
+Part 2: Optimal Path
+By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
+"""
+
 class Graph:
 
   def __init__(self):
