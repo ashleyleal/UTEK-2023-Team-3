@@ -1,4 +1,4 @@
-""" 
+"""
 UTEK 2024
 Part 2: Optimal Path
 By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
@@ -8,7 +8,7 @@ class Graph:
 
   def __init__(self):
     self.graph = {}
-  
+
   #keeping track of the traits of each path
   def add_edge(self, start, end, cost):
     if start not in self.graph:
@@ -39,15 +39,17 @@ def parse_input(input, nodes, end):
     relationships.append((source, target, value))
 
     for source_temp, target_temp, value_temp in relationships:
+      #print(nodes)
       if source_temp not in nodes and source_temp not in end:
         nodes.append(source_temp)
+        #print(nodes)
       if target_temp not in nodes and target_temp not in end:
         nodes.append(target_temp)
 
   return relationships, nodes
 
 #determining the lowest possible cost
-def find_min_cost_path(graph, nodes):
+def find_min_cost_path(graph, nodes, startinter, endinter):
   num_nodes = len(nodes)-1
   min_cost = float('inf')  #initial set up cost
   min_path = None  #initial set up path
@@ -62,13 +64,17 @@ def find_min_cost_path(graph, nodes):
               start, end = arr[i], arr[i + 1]
               if end in graph.get(start, {}):
                   cost += graph[start][end]
+                  #print(cost)
               else:
                   cost = float('inf')
                   break
 
-          if (cost < min_cost) and arr[0]==nodes[0] and arr[num_nodes]==nodes[num_nodes]:
+          if (cost < min_cost)and str(startinter)==str(arr[0]):
+              #print(start)
+              #print(arr)
               min_cost = cost
               min_path = arr
+              #print(min_cost, min_path)
 
       else:
           for i in range(start, end + 1):
@@ -93,13 +99,14 @@ input_string = input("Enter the relationships separated by commas: ")
 nodes = []
 
 nodes.insert(0, start_inter)
+#print(nodes)
 output, nodes = parse_input(input_string, nodes, end_inter)
 nodes.append(end_inter)
 
 for i, j, k in output:
   my_graph.add_edge(i, j, k)
 
-min_path, min_path_cost = find_min_cost_path(my_graph.graph, nodes)
+min_path, min_path_cost = find_min_cost_path(my_graph.graph, nodes, start_inter, end_inter)
 
 if min_path_cost == float('inf'):
   print(f"No valid path found.")

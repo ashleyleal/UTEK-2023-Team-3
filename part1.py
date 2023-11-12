@@ -1,4 +1,4 @@
-""" 
+"""
 UTEK 2024
 Part 1: Graph Construction
 By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
@@ -53,7 +53,7 @@ def parse_input(input_string):
 
   # Process each relationship
   for relationship in relationships:
-    start, end = relationship.split('->') 
+    start, end = relationship.split('->')
 
     for j, node in enumerate(nodeList):
         if(node==start):
@@ -68,7 +68,7 @@ def parse_input(input_string):
       length = len(nodeList[col])-1
       if(length<0):
         length = 0
-      
+
       print(matrix[row][col],end='')
       print(' '*(length),end = '|' )
     print()

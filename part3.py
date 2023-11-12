@@ -1,11 +1,10 @@
-""" 
+"""
 UTEK 2024
-Part 3: Time Constraint
+Part 3: Optimal Path and time
 By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
 """
-
 class Graph:
-# make a class to store the input 
+# make a class to store the input
 
   def __init__(self):
     self.graph = {}
@@ -76,7 +75,7 @@ def find_min_cost_path(graph, nodes, max_time):
       for i in range(len(arr) - 1):
         start, end = arr[i], arr[i + 1]
         if end in graph.get(start, {}):
-          cost += graph[start][end][0] 
+          cost += graph[start][end][0]
           timer += graph[start][end][1]
 
         else:
