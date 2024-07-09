@@ -5,6 +5,7 @@ By Team 3: Ashley Leal, Danelle D'Souza, Zuha Mujib, Winnie Hsiang
 """
 
 def print_and_count_unique_strings(input_string):
+  # Removing any leading or tailing whitspaces in the input string
   # Split the input string based on '->' and ',' to extract individual strings
   strings = [s.strip() for s in input_string.split('->')]
   strings = [s.strip() for string in strings for s in string.split(',')]
